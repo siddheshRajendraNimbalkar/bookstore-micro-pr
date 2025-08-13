@@ -1,0 +1,23 @@
+bookstore/
+ ├── product/
+ │    ├── proto/
+ │    ├── server/
+ │    ├── db/
+ │    ├── main.go
+ │    ├── Dockerfile
+ │
+ ├── order/
+ │    ├── proto/
+ │    ├── server/
+ │    ├── db/
+ │    ├── main.go
+ │    ├── Dockerfile
+ │
+ ├── gateway/
+ │    ├── graphql/
+ │    ├── resolvers/
+ │    ├── main.go
+ │    ├── Dockerfile
+ │
+ ├── docker-compose.yml
+ ├── README.md
