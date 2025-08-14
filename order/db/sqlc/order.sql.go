@@ -12,7 +12,7 @@ import (
 )
 
 const addOrder = `-- name: AddOrder :one
-INSERT INTO orders (product_id, quantity) VALUES ($1, $2) RETURNING id, product_id, quantity, order_date, status
+INSERT INTO orders (product_id, quantity) VALUES ($1, $2) RETURNING id, product_id, quantity, order_date, status, created_at
 `
 
 type AddOrderParams struct {
@@ -29,6 +29,7 @@ func (q *Queries) AddOrder(ctx context.Context, arg AddOrderParams) (Order, erro
 		&i.Quantity,
 		&i.OrderDate,
 		&i.Status,
+		&i.CreatedAt,
 	)
 	return i, err
 }

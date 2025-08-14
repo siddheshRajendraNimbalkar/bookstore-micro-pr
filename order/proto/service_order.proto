@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pb;
+
+import "rpc_create_order.proto";
+
+option go_package = "github.com/siddheshRajendraNimbalkar/bookstore/order/pb";
+
+service bookstoreOrder {
+    rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {}
+}

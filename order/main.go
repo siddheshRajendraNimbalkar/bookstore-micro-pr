@@ -4,9 +4,13 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"net"
 
 	db "github.com/siddheshRajendraNimbalkar/bookstore/order/db/sqlc"
+	"github.com/siddheshRajendraNimbalkar/bookstore/order/pb"
 	"github.com/siddheshRajendraNimbalkar/bookstore/order/server"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -24,6 +28,22 @@ func main() {
 
 	dbQueries := db.New(conn)
 
-	server.NewServer(dbQueries)
+	server := server.NewServer(dbQueries)
 
+	grpcServer := grpc.NewServer()
+	pb.RegisterBookstoreOrderServer(grpcServer, server)
+	reflection.Register(grpcServer)
+
+	listener, err := net.Listen("tcp", ":8080")
+
+	if err != nil {
+		log.Panic("[ERROR_WHILE_LISTENING]: ", err)
+	}
+
+	log.Println("Order service is listening on port ", listener.Addr().String())
+
+	err = grpcServer.Serve(listener)
+	if err != nil {
+		log.Panic("[ERROR_WHILE_SERVING]: ", err)
+	}
 }

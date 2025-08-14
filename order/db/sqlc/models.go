@@ -16,4 +16,5 @@ type Order struct {
 	Quantity  int32     `db:"quantity" json:"quantity"`
 	OrderDate time.Time `db:"order_date" json:"order_date"`
 	Status    string    `db:"status" json:"status"`
+	CreatedAt time.Time `db:"created_at" json:"created_at"`
 }

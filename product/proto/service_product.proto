@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pb;
+
+import "rpc_create_product.proto";
+
+option go_package = "github.com/siddheshRajendraNimbalkar/bookstore/product/pb";
+
+service ProductService {
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+}

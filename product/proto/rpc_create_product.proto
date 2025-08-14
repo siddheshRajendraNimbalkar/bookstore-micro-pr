@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+
+package pb;
+
+import "product.proto";
+
+option go_package = "github.com/siddheshRajendraNimbalkar/bookstore/product/pb";
+
+message CreateProductRequest {
+    string name = 1;
+    string image = 2;
+    string description = 3;
+    float price = 4;
+    int64 quantity = 5;
+    float star = 6;
+}
+
+message CreateProductResponse {
+    Product product = 1;
+}
