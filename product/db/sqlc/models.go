@@ -5,6 +5,8 @@
 package db
 
 import (
+	"time"
+
 	"github.com/google/uuid"
 )
 
@@ -16,4 +18,5 @@ type Product struct {
 	Description string    `db:"description" json:"description"`
 	Quantity    int32     `db:"quantity" json:"quantity"`
 	Stars       float64   `db:"stars" json:"stars"`
+	CreatedAt   time.Time `db:"created_at" json:"created_at"`
 }

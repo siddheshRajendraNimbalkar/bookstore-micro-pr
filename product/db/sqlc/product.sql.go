@@ -12,7 +12,7 @@ import (
 )
 
 const addProduct = `-- name: AddProduct :one
-INSERT INTO products (name, description, price, quantity) VALUES ($1, $2, $3, $4) RETURNING id, name, image, price, description, quantity, stars
+INSERT INTO products (name, description, price, quantity, image) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, image, price, description, quantity, stars, created_at
 `
 
 type AddProductParams struct {
@@ -20,6 +20,7 @@ type AddProductParams struct {
 	Description string  `db:"description" json:"description"`
 	Price       float64 `db:"price" json:"price"`
 	Quantity    int32   `db:"quantity" json:"quantity"`
+	Image       string  `db:"image" json:"image"`
 }
 
 func (q *Queries) AddProduct(ctx context.Context, arg AddProductParams) (Product, error) {
@@ -28,6 +29,7 @@ func (q *Queries) AddProduct(ctx context.Context, arg AddProductParams) (Product
 		arg.Description,
 		arg.Price,
 		arg.Quantity,
+		arg.Image,
 	)
 	var i Product
 	err := row.Scan(
@@ -38,12 +40,13 @@ func (q *Queries) AddProduct(ctx context.Context, arg AddProductParams) (Product
 		&i.Description,
 		&i.Quantity,
 		&i.Stars,
+		&i.CreatedAt,
 	)
 	return i, err
 }
 
 const getProduct = `-- name: GetProduct :one
-SELECT id, name, image, price, description, quantity, stars FROM products WHERE id = $1 LIMIT 1
+SELECT id, name, image, price, description, quantity, stars, created_at FROM products WHERE id = $1 LIMIT 1
 `
 
 func (q *Queries) GetProduct(ctx context.Context, id uuid.UUID) (Product, error) {
@@ -57,6 +60,7 @@ func (q *Queries) GetProduct(ctx context.Context, id uuid.UUID) (Product, error)
 		&i.Description,
 		&i.Quantity,
 		&i.Stars,
+		&i.CreatedAt,
 	)
 	return i, err
 }
