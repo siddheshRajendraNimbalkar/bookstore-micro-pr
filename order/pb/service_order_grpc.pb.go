@@ -20,13 +20,15 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	BookstoreOrder_CreateOrder_FullMethodName = "/pb.bookstoreOrder/CreateOrder"
+	BookstoreOrder_GetOrder_FullMethodName    = "/pb.bookstoreOrder/GetOrder"
 )
 
 // BookstoreOrderClient is the client API for BookstoreOrder service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BookstoreOrderClient interface {
-	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
+	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*OrderResponse, error)
+	GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*OrderResponse, error)
 }
 
 type bookstoreOrderClient struct {
@@ -37,10 +39,20 @@ func NewBookstoreOrderClient(cc grpc.ClientConnInterface) BookstoreOrderClient {
 	return &bookstoreOrderClient{cc}
 }
 
-func (c *bookstoreOrderClient) CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error) {
+func (c *bookstoreOrderClient) CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*OrderResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateOrderResponse)
+	out := new(OrderResponse)
 	err := c.cc.Invoke(ctx, BookstoreOrder_CreateOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bookstoreOrderClient) GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*OrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OrderResponse)
+	err := c.cc.Invoke(ctx, BookstoreOrder_GetOrder_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +63,8 @@ func (c *bookstoreOrderClient) CreateOrder(ctx context.Context, in *CreateOrderR
 // All implementations must embed UnimplementedBookstoreOrderServer
 // for forward compatibility.
 type BookstoreOrderServer interface {
-	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
+	CreateOrder(context.Context, *CreateOrderRequest) (*OrderResponse, error)
+	GetOrder(context.Context, *GetOrderRequest) (*OrderResponse, error)
 	mustEmbedUnimplementedBookstoreOrderServer()
 }
 
@@ -62,8 +75,11 @@ type BookstoreOrderServer interface {
 // pointer dereference when methods are called.
 type UnimplementedBookstoreOrderServer struct{}
 
-func (UnimplementedBookstoreOrderServer) CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error) {
+func (UnimplementedBookstoreOrderServer) CreateOrder(context.Context, *CreateOrderRequest) (*OrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrder not implemented")
+}
+func (UnimplementedBookstoreOrderServer) GetOrder(context.Context, *GetOrderRequest) (*OrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrder not implemented")
 }
 func (UnimplementedBookstoreOrderServer) mustEmbedUnimplementedBookstoreOrderServer() {}
 func (UnimplementedBookstoreOrderServer) testEmbeddedByValue()                        {}
@@ -104,6 +120,24 @@ func _BookstoreOrder_CreateOrder_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BookstoreOrder_GetOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookstoreOrderServer).GetOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BookstoreOrder_GetOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookstoreOrderServer).GetOrder(ctx, req.(*GetOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BookstoreOrder_ServiceDesc is the grpc.ServiceDesc for BookstoreOrder service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var BookstoreOrder_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateOrder",
 			Handler:    _BookstoreOrder_CreateOrder_Handler,
+		},
+		{
+			MethodName: "GetOrder",
+			Handler:    _BookstoreOrder_GetOrder_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

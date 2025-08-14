@@ -7,5 +7,6 @@ import "rpc_create_product.proto";
 option go_package = "github.com/siddheshRajendraNimbalkar/bookstore/product/pb";
 
 service ProductService {
-    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+    rpc CreateProduct(CreateProductRequest) returns (ProductResponse);
+    rpc GetProduct(GetProductRequest) returns (ProductResponse);
 }

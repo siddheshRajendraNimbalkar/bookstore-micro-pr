@@ -7,6 +7,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const addProduct = `-- name: AddProduct :one
@@ -27,6 +29,25 @@ func (q *Queries) AddProduct(ctx context.Context, arg AddProductParams) (Product
 		arg.Price,
 		arg.Quantity,
 	)
+	var i Product
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Image,
+		&i.Price,
+		&i.Description,
+		&i.Quantity,
+		&i.Stars,
+	)
+	return i, err
+}
+
+const getProduct = `-- name: GetProduct :one
+SELECT id, name, image, price, description, quantity, stars FROM products WHERE id = $1 LIMIT 1
+`
+
+func (q *Queries) GetProduct(ctx context.Context, id uuid.UUID) (Product, error) {
+	row := q.db.QueryRowContext(ctx, getProduct, id)
 	var i Product
 	err := row.Scan(
 		&i.ID,

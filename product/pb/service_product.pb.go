@@ -24,19 +24,24 @@ var File_service_product_proto protoreflect.FileDescriptor
 
 const file_service_product_proto_rawDesc = "" +
 	"\n" +
-	"\x15service_product.proto\x12\x02pb\x1a\x18rpc_create_product.proto2V\n" +
-	"\x0eProductService\x12D\n" +
-	"\rCreateProduct\x12\x18.pb.CreateProductRequest\x1a\x19.pb.CreateProductResponseB;Z9github.com/siddheshRajendraNimbalkar/bookstore/product/pbb\x06proto3"
+	"\x15service_product.proto\x12\x02pb\x1a\x18rpc_create_product.proto2\x8a\x01\n" +
+	"\x0eProductService\x12>\n" +
+	"\rCreateProduct\x12\x18.pb.CreateProductRequest\x1a\x13.pb.ProductResponse\x128\n" +
+	"\n" +
+	"GetProduct\x12\x15.pb.GetProductRequest\x1a\x13.pb.ProductResponseB;Z9github.com/siddheshRajendraNimbalkar/bookstore/product/pbb\x06proto3"
 
 var file_service_product_proto_goTypes = []any{
-	(*CreateProductRequest)(nil),  // 0: pb.CreateProductRequest
-	(*CreateProductResponse)(nil), // 1: pb.CreateProductResponse
+	(*CreateProductRequest)(nil), // 0: pb.CreateProductRequest
+	(*GetProductRequest)(nil),    // 1: pb.GetProductRequest
+	(*ProductResponse)(nil),      // 2: pb.ProductResponse
 }
 var file_service_product_proto_depIdxs = []int32{
 	0, // 0: pb.ProductService.CreateProduct:input_type -> pb.CreateProductRequest
-	1, // 1: pb.ProductService.CreateProduct:output_type -> pb.CreateProductResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: pb.ProductService.GetProduct:input_type -> pb.GetProductRequest
+	2, // 2: pb.ProductService.CreateProduct:output_type -> pb.ProductResponse
+	2, // 3: pb.ProductService.GetProduct:output_type -> pb.ProductResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

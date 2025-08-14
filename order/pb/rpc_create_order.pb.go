@@ -73,27 +73,27 @@ func (x *CreateOrderRequest) GetQuantity() int32 {
 	return 0
 }
 
-type CreateOrderResponse struct {
+type OrderResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Order         *Order                 `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateOrderResponse) Reset() {
-	*x = CreateOrderResponse{}
+func (x *OrderResponse) Reset() {
+	*x = OrderResponse{}
 	mi := &file_rpc_create_order_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateOrderResponse) String() string {
+func (x *OrderResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateOrderResponse) ProtoMessage() {}
+func (*OrderResponse) ProtoMessage() {}
 
-func (x *CreateOrderResponse) ProtoReflect() protoreflect.Message {
+func (x *OrderResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_rpc_create_order_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -105,16 +105,60 @@ func (x *CreateOrderResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateOrderResponse.ProtoReflect.Descriptor instead.
-func (*CreateOrderResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use OrderResponse.ProtoReflect.Descriptor instead.
+func (*OrderResponse) Descriptor() ([]byte, []int) {
 	return file_rpc_create_order_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateOrderResponse) GetOrder() *Order {
+func (x *OrderResponse) GetOrder() *Order {
 	if x != nil {
 		return x.Order
 	}
 	return nil
+}
+
+type GetOrderRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetOrderRequest) Reset() {
+	*x = GetOrderRequest{}
+	mi := &file_rpc_create_order_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOrderRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOrderRequest) ProtoMessage() {}
+
+func (x *GetOrderRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rpc_create_order_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOrderRequest.ProtoReflect.Descriptor instead.
+func (*GetOrderRequest) Descriptor() ([]byte, []int) {
+	return file_rpc_create_order_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetOrderRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 var File_rpc_create_order_proto protoreflect.FileDescriptor
@@ -125,9 +169,11 @@ const file_rpc_create_order_proto_rawDesc = "" +
 	"\x12CreateOrderRequest\x12\x1d\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tR\tproductId\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x05R\bquantity\"6\n" +
-	"\x13CreateOrderResponse\x12\x1f\n" +
-	"\x05order\x18\x01 \x01(\v2\t.pb.OrderR\x05orderB9Z7github.com/siddheshRajendraNimbalkar/bookstore/order/pbb\x06proto3"
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\"0\n" +
+	"\rOrderResponse\x12\x1f\n" +
+	"\x05order\x18\x01 \x01(\v2\t.pb.OrderR\x05order\"!\n" +
+	"\x0fGetOrderRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02idB9Z7github.com/siddheshRajendraNimbalkar/bookstore/order/pbb\x06proto3"
 
 var (
 	file_rpc_create_order_proto_rawDescOnce sync.Once
@@ -141,14 +187,15 @@ func file_rpc_create_order_proto_rawDescGZIP() []byte {
 	return file_rpc_create_order_proto_rawDescData
 }
 
-var file_rpc_create_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_rpc_create_order_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_rpc_create_order_proto_goTypes = []any{
-	(*CreateOrderRequest)(nil),  // 0: pb.CreateOrderRequest
-	(*CreateOrderResponse)(nil), // 1: pb.CreateOrderResponse
-	(*Order)(nil),               // 2: pb.Order
+	(*CreateOrderRequest)(nil), // 0: pb.CreateOrderRequest
+	(*OrderResponse)(nil),      // 1: pb.OrderResponse
+	(*GetOrderRequest)(nil),    // 2: pb.GetOrderRequest
+	(*Order)(nil),              // 3: pb.Order
 }
 var file_rpc_create_order_proto_depIdxs = []int32{
-	2, // 0: pb.CreateOrderResponse.order:type_name -> pb.Order
+	3, // 0: pb.OrderResponse.order:type_name -> pb.Order
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -168,7 +215,7 @@ func file_rpc_create_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rpc_create_order_proto_rawDesc), len(file_rpc_create_order_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

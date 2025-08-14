@@ -11,6 +11,10 @@ message CreateOrderRequest {
     int32 quantity = 2;
 }
 
-message CreateOrderResponse {
+message OrderResponse {
     Order order = 1;
+}
+
+message GetOrderRequest {
+    string id = 1;
 }

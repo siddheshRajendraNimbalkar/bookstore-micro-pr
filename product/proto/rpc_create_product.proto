@@ -16,6 +16,10 @@ message CreateProductRequest {
     float star = 6;
 }
 
-message CreateProductResponse {
+message ProductResponse {
     Product product = 1;
+}
+
+message GetProductRequest {
+    string id = 1;
 }

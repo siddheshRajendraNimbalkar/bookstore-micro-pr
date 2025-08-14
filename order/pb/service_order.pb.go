@@ -24,19 +24,23 @@ var File_service_order_proto protoreflect.FileDescriptor
 
 const file_service_order_proto_rawDesc = "" +
 	"\n" +
-	"\x13service_order.proto\x12\x02pb\x1a\x16rpc_create_order.proto2P\n" +
-	"\x0ebookstoreOrder\x12>\n" +
-	"\vCreateOrder\x12\x16.pb.CreateOrderRequest\x1a\x17.pb.CreateOrderResponseB9Z7github.com/siddheshRajendraNimbalkar/bookstore/order/pbb\x06proto3"
+	"\x13service_order.proto\x12\x02pb\x1a\x16rpc_create_order.proto2\x82\x01\n" +
+	"\x0ebookstoreOrder\x12:\n" +
+	"\vCreateOrder\x12\x16.pb.CreateOrderRequest\x1a\x11.pb.OrderResponse\"\x00\x124\n" +
+	"\bGetOrder\x12\x13.pb.GetOrderRequest\x1a\x11.pb.OrderResponse\"\x00B9Z7github.com/siddheshRajendraNimbalkar/bookstore/order/pbb\x06proto3"
 
 var file_service_order_proto_goTypes = []any{
-	(*CreateOrderRequest)(nil),  // 0: pb.CreateOrderRequest
-	(*CreateOrderResponse)(nil), // 1: pb.CreateOrderResponse
+	(*CreateOrderRequest)(nil), // 0: pb.CreateOrderRequest
+	(*GetOrderRequest)(nil),    // 1: pb.GetOrderRequest
+	(*OrderResponse)(nil),      // 2: pb.OrderResponse
 }
 var file_service_order_proto_depIdxs = []int32{
 	0, // 0: pb.bookstoreOrder.CreateOrder:input_type -> pb.CreateOrderRequest
-	1, // 1: pb.bookstoreOrder.CreateOrder:output_type -> pb.CreateOrderResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: pb.bookstoreOrder.GetOrder:input_type -> pb.GetOrderRequest
+	2, // 2: pb.bookstoreOrder.CreateOrder:output_type -> pb.OrderResponse
+	2, // 3: pb.bookstoreOrder.GetOrder:output_type -> pb.OrderResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

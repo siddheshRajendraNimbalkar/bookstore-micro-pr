@@ -105,27 +105,27 @@ func (x *CreateProductRequest) GetStar() float32 {
 	return 0
 }
 
-type CreateProductResponse struct {
+type ProductResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Product       *Product               `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateProductResponse) Reset() {
-	*x = CreateProductResponse{}
+func (x *ProductResponse) Reset() {
+	*x = ProductResponse{}
 	mi := &file_rpc_create_product_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateProductResponse) String() string {
+func (x *ProductResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateProductResponse) ProtoMessage() {}
+func (*ProductResponse) ProtoMessage() {}
 
-func (x *CreateProductResponse) ProtoReflect() protoreflect.Message {
+func (x *ProductResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_rpc_create_product_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -137,16 +137,60 @@ func (x *CreateProductResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateProductResponse.ProtoReflect.Descriptor instead.
-func (*CreateProductResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProductResponse.ProtoReflect.Descriptor instead.
+func (*ProductResponse) Descriptor() ([]byte, []int) {
 	return file_rpc_create_product_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateProductResponse) GetProduct() *Product {
+func (x *ProductResponse) GetProduct() *Product {
 	if x != nil {
 		return x.Product
 	}
 	return nil
+}
+
+type GetProductRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductRequest) Reset() {
+	*x = GetProductRequest{}
+	mi := &file_rpc_create_product_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductRequest) ProtoMessage() {}
+
+func (x *GetProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_rpc_create_product_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductRequest.ProtoReflect.Descriptor instead.
+func (*GetProductRequest) Descriptor() ([]byte, []int) {
+	return file_rpc_create_product_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetProductRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 var File_rpc_create_product_proto protoreflect.FileDescriptor
@@ -160,9 +204,11 @@ const file_rpc_create_product_proto_rawDesc = "" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x14\n" +
 	"\x05price\x18\x04 \x01(\x02R\x05price\x12\x1a\n" +
 	"\bquantity\x18\x05 \x01(\x03R\bquantity\x12\x12\n" +
-	"\x04star\x18\x06 \x01(\x02R\x04star\">\n" +
-	"\x15CreateProductResponse\x12%\n" +
-	"\aproduct\x18\x01 \x01(\v2\v.pb.ProductR\aproductB;Z9github.com/siddheshRajendraNimbalkar/bookstore/product/pbb\x06proto3"
+	"\x04star\x18\x06 \x01(\x02R\x04star\"8\n" +
+	"\x0fProductResponse\x12%\n" +
+	"\aproduct\x18\x01 \x01(\v2\v.pb.ProductR\aproduct\"#\n" +
+	"\x11GetProductRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02idB;Z9github.com/siddheshRajendraNimbalkar/bookstore/product/pbb\x06proto3"
 
 var (
 	file_rpc_create_product_proto_rawDescOnce sync.Once
@@ -176,14 +222,15 @@ func file_rpc_create_product_proto_rawDescGZIP() []byte {
 	return file_rpc_create_product_proto_rawDescData
 }
 
-var file_rpc_create_product_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_rpc_create_product_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_rpc_create_product_proto_goTypes = []any{
-	(*CreateProductRequest)(nil),  // 0: pb.CreateProductRequest
-	(*CreateProductResponse)(nil), // 1: pb.CreateProductResponse
-	(*Product)(nil),               // 2: pb.Product
+	(*CreateProductRequest)(nil), // 0: pb.CreateProductRequest
+	(*ProductResponse)(nil),      // 1: pb.ProductResponse
+	(*GetProductRequest)(nil),    // 2: pb.GetProductRequest
+	(*Product)(nil),              // 3: pb.Product
 }
 var file_rpc_create_product_proto_depIdxs = []int32{
-	2, // 0: pb.CreateProductResponse.product:type_name -> pb.Product
+	3, // 0: pb.ProductResponse.product:type_name -> pb.Product
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -203,7 +250,7 @@ func file_rpc_create_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rpc_create_product_proto_rawDesc), len(file_rpc_create_product_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
