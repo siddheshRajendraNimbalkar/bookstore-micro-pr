@@ -3,6 +3,7 @@ syntax = "proto3";
 package pb;
 
 import "order.proto";
+import "product.proto";
 
 option go_package = "github.com/siddheshRajendraNimbalkar/bookstore/order/pb";
 
@@ -13,8 +14,17 @@ message CreateOrderRequest {
 
 message OrderResponse {
     Order order = 1;
+    Product product = 2;
 }
 
 message GetOrderRequest {
     string id = 1;
+}
+
+message GetProductRequest {
+    string id = 1;
+}
+
+message ProductResponse {
+    Product product = 1;
 }
