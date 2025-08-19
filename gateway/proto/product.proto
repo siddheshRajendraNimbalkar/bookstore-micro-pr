@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/siddheshRajendraNimbalkar/bookstore/gateway/pb";
+
+message Product {
+    string product_id = 1;
+    string name = 2;
+    string image = 3;
+    string description = 4;
+    float price = 5;
+    int64 quantity = 6;
+    float star = 7;
+    google.protobuf.Timestamp created_at = 8;
+}
+
+message CreateProductRequest {
+    string name = 1;
+    string image = 2;
+    string description = 3;
+    float price = 4;
+    int64 quantity = 5;
+    float star = 6;
+}
+
+message CreateProductResponse {
+    Product product = 1;
+}

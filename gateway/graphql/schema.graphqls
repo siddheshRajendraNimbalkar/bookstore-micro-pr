@@ -1,0 +1,45 @@
+
+# schema.graphqls
+
+type Product {
+    id: ID!
+    name: String!
+    image: String!
+    description: String!
+    price: Float!
+    quantity: Int!
+    star: Float!
+}
+
+type Order {
+    id: ID!
+    product_id: ID!
+    quantity: Int!
+    status: String!
+}
+
+type Query {
+    getProduct: [Product!]!
+    getProductById(id: ID!): Product
+    getOrder: [Order!]!
+    getOrderById(id: ID!): Order
+}
+
+input CreateProductInput {
+    name: String!
+    image: String!
+    description: String!
+    price: Float!
+    quantity: Int!
+    star: Float!
+}
+
+input CreateOrderInput {
+    product_id: ID!
+    quantity: Int!
+}
+
+type Mutation {
+    CreateProduct(input: CreateProductInput!): Product!
+    CreateOrder(input: CreateOrderInput!): Order!
+}
